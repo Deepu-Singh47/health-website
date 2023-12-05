@@ -1,0 +1,354 @@
+{% include "common/header.html" %}
+
+<main style="min-height: 349px">
+  <div
+    class="upper"
+    style="display: flex; justify-content: center; min-height: 715px"
+  >
+    <div class="row container">
+      <div class="signup col-md-6">
+        <div style="display: flex; align-items: center; height: 100%">
+          <div style="margin-block: 80px">
+            <div style="display: flex; margin-left: 40px">
+              <div style="color: black">
+                <h1 style="margin: 0px" class="he">No ordinary</h1>
+                <h1 class="he">doctor's office</h1>
+              </div>
+            </div>
+            <div>
+              <div style="padding: 19px 50px; font-size: 16px">
+                <p>
+                  jsdkjfoisdj Lorem ipsum dolor sit, amet consectetur
+                  adipisicing elit. Facere asperiores vitae sint autem
+                  necessitatibus? Sapiente quae optio id autem doloribus
+                  aspernatur. Placeat nobis, distinctio esse dolor dolore
+                  accusamus culpa reprehenderit.
+                </p>
+              </div>
+              <div style="margin-inline: 54px">
+                <button id="signup">Signup</button
+                ><a id="membership" class="sublink" href="#">
+                  Get a membership
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center" class="adv col-md-6">
+        <div style="margin: auto">
+          <form
+            id="myForm"
+            method="post"
+            style="width: 377px; margin-block: 47px"
+          >
+            {% csrf_token %}
+            <h3
+              class="form-head"
+              style="text-align: center; margin-block: 15px"
+            >
+              Check up form
+            </h3>
+            <div class="row">
+              <div class="mb-3 col-12">
+                <label
+                  style="font-weight: 500"
+                  for="exampleInputName"
+                  class="form-label"
+                  >Name</label
+                >
+                <input
+                  placeholder="name"
+                  type="text"
+                  class="form-control"
+                  id="exampleInputName"
+                  name="name"
+                  required
+                />
+              </div>
+
+              <div class="mb-3 col-6">
+                <label
+                  style="font-weight: 500"
+                  for="exampleInputAge"
+                  class="form-label"
+                  >Age</label
+                >
+                <select
+                  style="color: grey"
+                  placeholder="age"
+                  class="form-select"
+                  id="exampleInputAge"
+                  name="age"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Select your age range
+                  </option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                </select>
+              </div>
+
+              <div class="mb-3 col-6">
+                <label
+                  style="font-weight: 500"
+                  for="exampleInputGender"
+                  class="form-label"
+                  >Gender</label
+                >
+                <select
+                  style="color: grey"
+                  placeholder="gender"
+                  class="form-select"
+                  id="exampleInputGender"
+                  name="gender"
+                  required
+                >
+                  <option value="" disabled selected>Select your gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Non-binary">Non-binary</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="mb-3 col-12">
+                <label
+                  style="font-weight: 500"
+                  for="exampleInputContact"
+                  class="form-label"
+                  >Contact</label
+                >
+                <input
+                  placeholder="mobile no."
+                  type="tel"
+                  class="form-control"
+                  id="exampleInputContact"
+                  name="contact"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  style="font-weight: 500"
+                  for="exampleInputEmail"
+                  class="form-label"
+                  >Email address</label
+                >
+                <input
+                  placeholder="e-mail"
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail"
+                  name="email"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  style="font-weight: 500"
+                  for="exampleInputSymptoms"
+                  class="form-label"
+                  >Symptoms</label
+                >
+                <select
+                  style="color: grey"
+                  class="form-select"
+                  id="exampleInputSymptoms"
+                  name="symptoms"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Select your symptoms
+                  </option>
+                  {% for symptom in symptoms %} {% comment %}
+                  <option value="{{ symptom.id }}">{% endcomment %}</option>
+                  <option value="{{ symptom.symptom }}">
+                    {{ symptom.symptom }}
+                  </option>
+                  {% endfor %}
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div
+              style="display: flex; justify-content: center; padding-top: 30px"
+            >
+              <button
+                type="submit"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                onclick="submitFormAndOpenModal()"
+              >
+                Check up
+              </button>
+              {% comment %} modal {% endcomment %}
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div
+                    style="
+                      background-color: #ffffffab;
+                      border-radius: 0px;
+                      box-shadow: 0px 0px 24px 2px;
+                    "
+                    class="modal-content"
+                  >
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        CheckUp Result
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div>
+                        <p>
+                          Hello, <strong>{{patients.name}}</strong>, welcome in
+                          our service
+                        </p>
+                      </div>
+                      <div>
+                        <strong>Your possible diseases are: </strong>
+                        <p>{{recentSelected}}end</p>
+                      </div>
+                      <div>
+                        <h3>Treatment</h3>
+                        <p>{{recentS}}</p>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="middle">
+    <div class="container">
+      <div style="display: flex; padding: 37px 0px; justify-content: center">
+        <img class="img-fluid" src="/static/images/SuvidhaLogo.png" alt="" />
+      </div>
+    </div>
+  </div>
+  <div style="padding-block-end: 97px" class="container">
+    <div class="row">
+      <div style="padding: 0px 30px" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div
+          style="
+            border: 1px solid rgb(38, 247, 66);
+            border-radius: 0px;
+            box-shadow: 0px 0px 17px -5px;
+          "
+          class="card"
+        >
+          <div style="padding: 34px 29px" class="card-body">
+            <h5 style="text-align: center" class="card-title">
+              Services Offered
+            </h5>
+            <p class="card-text">
+              Discover a wide range of healthcare services at our facility and
+              designed to meet your specific medical needs. Whether you're
+              looking for general medical care, specialized treatments, or
+              preventive services, we have you covered. Our dedicated team of
+              healthcare professionals is committed to your all total
+              well-being.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 0px 30px" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div
+          style="
+            border: 1px solid rgb(38, 247, 66);
+            border-radius: 0px;
+            box-shadow: 0px 0px 17px -5px;
+          "
+          class="card"
+        >
+          <div style="padding: 34px 29px" class="card-body">
+            <h5 style="text-align: center" class="card-title">
+              Providers/Doctors
+            </h5>
+            <p class="card-text">
+              Our healthcare facility is proud to have a team of experienced and
+              compassionate medical professionals. From board-certified
+              physicians to specialists in various fields, our experts are here
+              to provide you with the best possible care. Learn more about our
+              doctors, their qualifications, and their commitment to your
+              health.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 0px 30px" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div
+          style="
+            border: 1px solid rgb(38, 247, 66);
+            border-radius: 0px;
+            box-shadow: 0px 0px 17px -5px;
+          "
+          class="card"
+        >
+          <div style="padding: 34px 29px" class="card-body">
+            <h5 style="text-align: center" class="card-title">
+              Patient Resources
+            </h5>
+            <p class="card-text">
+              We believe that informed patients make healthier choices. That's
+              why we offer a wealth of resources to help you better understand
+              your health and medical conditions. Explore our patient resources,
+              which include informative articles, educational videos, frequently
+              asked questions, and more. We're here to support your health
+              journey.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include "common/footer.html" %}
